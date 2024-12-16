@@ -1,19 +1,28 @@
 {
   "name": "youtubeapi-edge",
   "version": "0.0.1",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "A YouTube API client for Edge environments",
   "main": "dist/src/index.js",
   "module": "dist/src/index.mjs",
   "types": "dist/src/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && tsc-alias",
     "prepare": "npm run build",
     "test": "vitest",
     "test:watch": "vitest --watch",
     "test:ui": "vitest --ui"
   },
-  "keywords": ["YouTube", "API", "Edge"],
+  "keywords": [
+    "YouTube",
+    "API",
+    "Edge"
+  ],
   "author": "myzkey",
   "license": "MIT",
   "packageManager": "pnpm@9.12.3+sha512.cce0f9de9c5a7c95bef944169cc5dfe8741abfb145078c0d508b868056848a87c81e626246cb60967cbd7fd29a6c062ef73ff840d96b3c86c40ac92cf4a813ee",
@@ -21,6 +30,7 @@
     "@types/node": "^22.9.4",
     "@vitest/ui": "^2.1.8",
     "happy-dom": "^15.11.7",
+    "tsc-alias": "^1.8.10",
     "typescript": "^5.7.2",
     "vitest": "^2.1.8"
   },
