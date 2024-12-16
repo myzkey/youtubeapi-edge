@@ -12,7 +12,7 @@ const VERSIONS = {
   v3: 'v3',
 } as const;
 
-export default (
+export const youtubeapiEdge = (
   params: {
     version: keyof typeof VERSIONS;
     auth: string
