@@ -18,34 +18,34 @@ export type PlaylistsRequest = {
    * - `contentDetails`: 再生リストのコンテンツ情報(動画数など)
    * - `player`: 再生リストの動画プレイヤー情報(埋め込みタグ情報など)
    */
-  part: string;
+  part: string
   /**
    * 取得対象のチャンネルID。
    * チャンネルIDはそのチャンネルのURLを見ればわかる:
    * `https://www.youtube.com/channel/[チャンネルID]`
    */
-  channelId?: string;
+  channelId?: string
   /**
    * 取得対象の再生リストID。
    * 複数指定でき、カンマ区切りでリクエスト可能。
    */
-  id?: boolean;
+  id?: boolean
   /**
    * `true`にすると、認証されたユーザーが所有するチャンネルのみを返す様になる。
    * OAuth認証時のリクエストのみ有効。
    */
-  mine?: boolean;
+  mine?: boolean
   /**
    * 1回のリクエストで取得できるチャンネル数を指定できる。
    * 0〜50まで指定可能、デフォルト値: `5`
    */
-  maxResults?: number;
+  maxResults?: number
   /**
    * paging機能を使う場合に使用。
    */
-  pageToken?: string;
+  pageToken?: string
   /**
    * APIアクセスキー。
    */
-  key: string;
+  key: string
 }

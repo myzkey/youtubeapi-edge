@@ -16,7 +16,9 @@
     "prepare": "npm run build",
     "test": "vitest",
     "test:watch": "vitest --watch",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui",
+    "lint": "eslint src/",
+    "lint:fix": "prettier --write 'src/**/*' &&  eslint --fix src/"
   },
   "keywords": [
     "YouTube",
@@ -25,13 +27,20 @@
   ],
   "author": "myzkey",
   "license": "MIT",
-  "packageManager": "pnpm@9.12.3+sha512.cce0f9de9c5a7c95bef944169cc5dfe8741abfb145078c0d508b868056848a87c81e626246cb60967cbd7fd29a6c062ef73ff840d96b3c86c40ac92cf4a813ee",
+  "packageManager": "pnpm@9.12.3",
   "devDependencies": {
+    "@eslint/js": "^9.17.0",
     "@types/node": "^22.9.4",
     "@vitest/ui": "^2.1.8",
+    "eslint": "^9.17.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "globals": "^15.13.0",
     "happy-dom": "^15.11.7",
+    "prettier": "^3.4.2",
     "tsc-alias": "^1.8.10",
     "typescript": "^5.7.2",
+    "typescript-eslint": "^8.18.1",
     "vitest": "^2.1.8"
   },
   "dependencies": {

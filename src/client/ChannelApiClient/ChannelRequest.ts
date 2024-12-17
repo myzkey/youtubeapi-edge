@@ -21,41 +21,41 @@ export type ChannelsRequest = {
    * - `status`: チャンネルのプライバシーステータス情報
    * - `invideoPromotion`: チャンネルのプロモーション情報(なぜかリクエストできなかった…APIトークン形式では取得不可能なのかも?)
    */
-  part: string;
+  part: string
   /**
    * 取得対象のチャンネルID。
    * チャンネルIDはそのチャンネルのURLを見ればわかる:
    * `https://www.youtube.com/channel/[チャンネルID]`
    */
-  id?: string;
+  id?: string
   /**
    * 取得対象のYoutubeガイドカテゴリ、この形式ではそのカテゴリに属するチャンネルが取得できる。
    * Youtubeガイドカテゴリとは: Youtube側が割り当てるカテゴリ、ユーザー側では割り当て不可能。
    * 詳しくは[こちら](https://developers.google.com/youtube/v3/docs/guideCategories?hl=ja)
    */
-  categoryId?: string;
+  categoryId?: string
   /**
    * 取得対象のYoutubeユーザー名。
    */
-  forUsername?: string;
+  forUsername?: string
   /**
    * `true`にすると、認証されたユーザーが所有するチャンネルのみを返す様になる。
    * OAuth認証時のリクエストのみ有効。
    */
-  mine?: boolean;
+  mine?: boolean
   /**
    * OAuth認証時のリクエストのみ有効。
    * Youtubeコンテンツパートナー専用プロパティ。
    * 詳しくは公式Docs参照。
    */
-  onBehalfOfContentOwner?: string;
+  onBehalfOfContentOwner?: string
   /**
    * 1回のリクエストで取得できるチャンネル数を指定できる。
    * 0〜50まで指定可能、デフォルト値: `5`
    */
-  maxResults?: number;
+  maxResults?: number
   /**
    * paging機能を使う場合に使用。
    */
-  pageToken?: string;
+  pageToken?: string
 }

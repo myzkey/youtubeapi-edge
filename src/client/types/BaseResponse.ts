@@ -6,11 +6,11 @@ export type BaseResponse = {
    * APIリソースタイプ。
    * 例: `youtube#channelListResponse`
    */
-  kind: string;
+  kind: string
   /**
    * このリソースのEtag。
    */
-  etag: string;
+  etag: string
 }
 
 /**
@@ -24,20 +24,20 @@ export type BasePageInfoResponse = {
     /**
      * 結果セット内の結果の総数。
      */
-    totalResults: number;
+    totalResults: number
     /**
      * APIレスポンスに含まれる結果の数。
      */
-    resultsPerPage: number;
-  };
+    resultsPerPage: number
+  }
   /**
    * 次ページへのページングトークン。
    */
-  nextPageToken: string;
+  nextPageToken: string
   /**
    * 前ページへのページングトークン。
    */
-  prevPageToken: string;
+  prevPageToken: string
 }
 
 /**
@@ -49,31 +49,31 @@ export type BaseThumbnail = {
    * - 動画: 120px x 90px
    * - チャンネル: 88px x 88px
    */
-  default: BaseThumbnailItem;
+  default: BaseThumbnailItem
   /**
    * 低解像度のサムネイル画像。
    * - 動画: 320px x 180px
    * - チャンネル: 240px x 240px
    */
-  medium: BaseThumbnailItem;
+  medium: BaseThumbnailItem
   /**
    * 高解像度のサムネイル画像。
    * - 動画: 480px x 360px
    * - チャンネル: 800px x 800px
    */
-  high: BaseThumbnailItem;
+  high: BaseThumbnailItem
 }
 export type BaseThumbnailItem = {
   /**
    * 画像URL。
    */
-  url: string;
+  url: string
   /**
    * 画像幅。
    */
-  width: number;
+  width: number
   /**
    * 画像の高さ。
    */
-  height: number;
+  height: number
 }

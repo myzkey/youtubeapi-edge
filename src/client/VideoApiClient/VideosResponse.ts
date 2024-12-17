@@ -2,107 +2,108 @@ import {
   BasePageInfoResponse,
   BaseResponse,
   BaseThumbnail,
-} from "~/client/types/BaseResponse";
+} from '~/client/types/BaseResponse'
 
 /**
  * Youtube Data API > `videos`のレスポンス。
  * 公式Docs: https://developers.google.com/youtube/v3/docs/videos/list?hl=ja
  */
-export type VideosResponse = BaseResponse & BasePageInfoResponse & {
-  /**
-   * 結果は配列形式で格納される。
-   */
-  items: {
-    kind: string;
-    etag: string;
-    id: string;
+export type VideosResponse = BaseResponse &
+  BasePageInfoResponse & {
     /**
-     * 動画の基本情報。
+     * 結果は配列形式で格納される。
      */
-    snippet: VideosResponseSnippet;
-    /**
-     * 動画のコンテンツ情報。
-     */
-    contentDetails: VideosResponseContentDetail;
-    /**
-     * 動画のアップロード、処理、プライバシーステータス情報。
-     */
-    status: VideosResponseStatus;
-    /**
-     * 動画の統計情報。
-     */
-    statistics: VideosResponseStatistic;
-    /**
-     * 動画の埋め込み時に使用される設定。
-     */
-    player: VideosResponsePlayer;
-    /**
-     * 動画に関連づけられているFreebaseのトピック情報。
-     * Freebase: かつて存在していたオンラインデータベース、Googleに買収後公開された。
-     */
-    topicDetails: VideosResponseTopicDetail;
-    /**
-     * 動画が録画された場所、日付、住所情報。
-     */
-    recordingDetails: VideosResponseRecordingDetails;
-    /**
-     * ライブ配信情報。
-     */
-    liveStreamingDetails: VideosResponseLiveStreamingDetails;
-  }[];
-}
+    items: {
+      kind: string
+      etag: string
+      id: string
+      /**
+       * 動画の基本情報。
+       */
+      snippet: VideosResponseSnippet
+      /**
+       * 動画のコンテンツ情報。
+       */
+      contentDetails: VideosResponseContentDetail
+      /**
+       * 動画のアップロード、処理、プライバシーステータス情報。
+       */
+      status: VideosResponseStatus
+      /**
+       * 動画の統計情報。
+       */
+      statistics: VideosResponseStatistic
+      /**
+       * 動画の埋め込み時に使用される設定。
+       */
+      player: VideosResponsePlayer
+      /**
+       * 動画に関連づけられているFreebaseのトピック情報。
+       * Freebase: かつて存在していたオンラインデータベース、Googleに買収後公開された。
+       */
+      topicDetails: VideosResponseTopicDetail
+      /**
+       * 動画が録画された場所、日付、住所情報。
+       */
+      recordingDetails: VideosResponseRecordingDetails
+      /**
+       * ライブ配信情報。
+       */
+      liveStreamingDetails: VideosResponseLiveStreamingDetails
+    }[]
+  }
 
 type VideosResponseSnippet = {
   /**
    * 動画投稿日時。
    * ISO 8601(`YYYY-MM-DDThh:mm:ss.sZ`)形式で返却。
    */
-  publishedAt: string;
+  publishedAt: string
   /**
    * 動画を投稿したチャンネルID。
    */
-  channelId: string;
+  channelId: string
   /**
    * 動画を投稿したチャンネル名。
    */
-  channelTitle: string;
+  channelTitle: string
   /**
    * 動画タイトル。
    */
-  title: string;
+  title: string
   /**
    * 動画説明。
    */
-  description: string;
+  description: string
   /**
    * サムネイル情報。
    */
-  thumbnails: BaseThumbnail;
+  thumbnails: BaseThumbnail
   /**
    * 動画に関連づけられているタグ。
    */
-  tags: string[];
+  tags: string[]
   /**
    * 動画に関連づけられている動画カテゴリID。
    */
-  categoryId: string;
+  categoryId: string
   /**
    * ライブ配信ステータス。
    * - `live`: APIリクエスト時点でライブ配信中
    * - `upcoming`: ライブ配信予約されている動画であり、まだライブ配信されてない状態
    * - `none`: ライブ配信ではない動画orライブ配信終了済みの動画
    */
-  liveBroadcastContent: "live" | "upcoming" | "none";
+  liveBroadcastContent: 'live' | 'upcoming' | 'none'
   /**
    * デフォルトの言語。
    * 例: `ja`
    */
-  defaultLanguage: string;
+  defaultLanguage: string
   /**
    * デフォルトのオーディオ言語。
    * 例: `ja`
    */
-  defaultAudioLanguage: string;
+  defaultAudioLanguage: string
 }
 
 type VideosResponseContentDetail = {
@@ -110,27 +111,27 @@ type VideosResponseContentDetail = {
    * 動画の長さ。 ISO8601に倣った`PT#M#S`形式。
    * 例: `PT15M51S`= 15分51秒の動画、ということ。
    */
-  duration: string;
+  duration: string
   /**
    * 動画が2D形式か3D形式かどうかを示す。
    * - `2d`: 2D形式
    */
-  dimension: string;
+  dimension: string
   /**
    * 高解像度(HD)版がある動画か、標準画質版のみであるかどうか。
    * - `hd`: 高解像度版もある
    * - `sd`: 標準画質版のみ
    */
-  definition: "hd" | "sd";
+  definition: 'hd' | 'sd'
   /**
    * 動画にキャプションがついているかどうか。
    * `true`: ついている、`false`: ついていない
    */
-  caption: "true" | "false";
+  caption: 'true' | 'false'
   /**
    * YouTubeコンテンツパートナーにより申し立てが行われている動画であるかどうか。
    */
-  licensedContent: boolean;
+  licensedContent: boolean
   /**
    * 国別に動画の視聴制限をかけてる場合、視聴制限情報が格納。
    * 未設定の場合プロパティごと無くなる。
@@ -141,14 +142,14 @@ type VideosResponseContentDetail = {
      * ここに入ってない国は視聴がブロックされる。
      * リストが空の場合、全ての国からの視聴がブロックされる。
      */
-    allowed: string[];
+    allowed: string[]
     /**
      * 動画を視聴拒否している句にコードリスト。
      * ここに入ってない国は視聴できる。
      * リストが空の場合、全ての国で視聴可能。
      */
-    blocked: string[];
-  };
+    blocked: string[]
+  }
   /**
    * 動画のレーティング情報。
    * たくさんの種類があるため、日本のレーティング情報のみに省略。
@@ -164,20 +165,20 @@ type VideosResponseContentDetail = {
      * - eirinUnrated
      */
     eirinRating:
-      | "eirinG"
-      | "eirinPg12"
-      | "eirinR15plus"
-      | "eirinR18plus"
-      | "eirinUnrated";
+      | 'eirinG'
+      | 'eirinPg12'
+      | 'eirinR15plus'
+      | 'eirinR18plus'
+      | 'eirinUnrated'
     /**
      * Youtubeが年齢制限を示すために使用するレーティング。
      */
-    ytRating: "ytAgeRestricted";
-  };
+    ytRating: 'ytAgeRestricted'
+  }
   /**
    * 謎値。`rectangular`を確認。
    */
-  projection: string;
+  projection: string
 }
 
 type VideosResponseStatus = {
@@ -189,7 +190,7 @@ type VideosResponseStatus = {
    * - `rejected`: アップロード却下
    * - `uploaded`: アップロード完了
    */
-  uploadStatus: "deleted" | "failed" | "processed" | "rejected" | "uploaded";
+  uploadStatus: 'deleted' | 'failed' | 'processed' | 'rejected' | 'uploaded'
   /**
    * アップロード失敗時の理由。
    * `uploadStatus`が`failed`の時のみ存在。
@@ -201,12 +202,12 @@ type VideosResponseStatus = {
    * - `uploadAborted`
    */
   failureReason:
-    | "codec"
-    | "conversion"
-    | "emptyFile"
-    | "invalidFile"
-    | "tooSmall"
-    | "uploadAborted";
+    | 'codec'
+    | 'conversion'
+    | 'emptyFile'
+    | 'invalidFile'
+    | 'tooSmall'
+    | 'uploadAborted'
   /**
    * アップロードが却下された理由。
    * `uploadStatus`が`rejected`の時のみ存在。
@@ -221,72 +222,72 @@ type VideosResponseStatus = {
    * - `uploaderAccountSuspended`
    */
   rejectionReason:
-    | "claim"
-    | "copyright"
-    | "duplicate"
-    | "inappropriate"
-    | "length"
-    | "termsOfUse"
-    | "trademark"
-    | "uploaderAccountClosed"
-    | "uploaderAccountSuspended";
+    | 'claim'
+    | 'copyright'
+    | 'duplicate'
+    | 'inappropriate'
+    | 'length'
+    | 'termsOfUse'
+    | 'trademark'
+    | 'uploaderAccountClosed'
+    | 'uploaderAccountSuspended'
   /**
    * 動画のプライバシーステータス。
    * - `private`: 非公開
    * - `public`: 公開
    * - `unlisted`
    */
-  privacyStatus: "private" | "public" | "unlisted";
+  privacyStatus: 'private' | 'public' | 'unlisted'
   /**
    * 動画のライセンス。
    * - `creativeCommon`
    * - `youtube`
    */
-  license: "creativeCommon" | "youtube";
+  license: 'creativeCommon' | 'youtube'
   /**
    * 動画の埋め込みが可能かどうか。
    */
-  embeddable: boolean;
+  embeddable: boolean
   /**
    * 動画再生ページで拡張統計情報が一般公開されているかどうか。
    * デフォルト: 統計情報が表示。
    * `false`であっても、一部の統計情報(再生回数/評価など)は一般公開される。
    */
-  publicStatsViewable: boolean;
+  publicStatsViewable: boolean
   /**
    * 子供向け動画として設定されているかどうか。
    */
-  madeForKids: boolean;
+  madeForKids: boolean
 }
 
 type VideosResponseStatistic = {
   /**
    * 動画の視聴回数。
    */
-  viewCount: string;
+  viewCount: string
   /**
    * 動画の高評価数。
    */
-  likeCount: string;
+  likeCount: string
   /**
    * 動画の低評価数。
    */
-  dislikeCount: string;
+  dislikeCount: string
   /**
    *API取得時点の、動画がお気に入りされている数。
    */
-  favoriteCount: string;
+  favoriteCount: string
   /**
    * 動画に付いてるコメント数。
    */
-  commentCount: string;
+  commentCount: string
 }
 
 type VideosResponsePlayer = {
   /**
    * 動画の埋め込み`<iframe>`タグ。
    */
-  embedHtml: string;
+  embedHtml: string
 }
 
 type VideosResponseTopicDetail = {
@@ -294,11 +295,11 @@ type VideosResponseTopicDetail = {
    * 動画に紐づく主要なFreebaseID群。
    * 動画を主として構成しているカテゴリが格納される。
    */
-  topicCategories: string[];
+  topicCategories: string[]
   /**
    * 動画で取り上げられている可能性のあるFreebaseID群。
    */
-  relevantTopicIds: string[];
+  relevantTopicIds: string[]
 }
 
 type VideosResponseRecordingDetails = {
@@ -309,21 +310,21 @@ type VideosResponseRecordingDetails = {
     /**
      * 緯度。
      */
-    latitude: number;
+    latitude: number
     /**
      * 経度。
      */
-    longitude: number;
+    longitude: number
     /**
      * 準拠楕円体からの高度(単位:メートル)。
      */
-    altitude: number;
-  };
+    altitude: number
+  }
   /**
    * 動画の録画日。
    * ISO 8601(`YYYY-MM-DDThh:mm:ss.sZ`)形式。
    */
-  recordingDate: string;
+  recordingDate: string
 }
 
 type VideosResponseLiveStreamingDetails = {
@@ -331,15 +332,15 @@ type VideosResponseLiveStreamingDetails = {
    * ライブ配信開始時刻。
    * ISO 8601(`YYYY-MM-DDThh:mm:ss.sZ`)形式。
    */
-  actualStartTime: string;
+  actualStartTime: string
   /**
    * ライブ配信終了時刻。
    * ISO 8601(`YYYY-MM-DDThh:mm:ss.sZ`)形式。
    */
-  actualEndTime: string;
+  actualEndTime: string
   /**
    * ライブ配信開始予定時刻。
    * ISO 8601(`YYYY-MM-DDThh:mm:ss.sZ`)形式。
    */
-  scheduledStartTime: string;
+  scheduledStartTime: string
 }

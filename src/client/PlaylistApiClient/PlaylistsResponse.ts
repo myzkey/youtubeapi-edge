@@ -2,39 +2,40 @@ import {
   BasePageInfoResponse,
   BaseResponse,
   BaseThumbnail,
-} from "~/client/types/BaseResponse";
+} from '~/client/types/BaseResponse'
 
 /**
  * Youtube Data API > `playlists`のレスポンス
  * 公式Docs: https://developers.google.com/youtube/v3/docs/playlists/list?hl=ja
  */
-export type PlaylistsResponse = BaseResponse & BasePageInfoResponse & {
-  /**
-   * 結果は配列形式で格納される。
-   */
-  items: {
-    kind: string;
-    etag: string;
-    id: string;
+export type PlaylistsResponse = BaseResponse &
+  BasePageInfoResponse & {
     /**
-     * 再生リストの基本情報。
+     * 結果は配列形式で格納される。
      */
-    snippet: PlaylistsResponseSnippet;
-    /**
-     * 再生リストのステータス情報。
-     * 例: `snippet.type`が`videoRated`である場合、当情報は評価された動画情報を指す。
-     */
-    status: PlaylistsResponseStatus;
-    /**
-     * 再生リストのコンテンツ情報(動画数など)。
-     */
-    contentDetails: PlaylistsResponseContentDetails;
-    /**
-     * 再生リストの動画プレイヤー情報(埋め込みタグ情報など)。
-     */
-    player: PlaylistsResponsePlayer;
-  }[];
-}
+    items: {
+      kind: string
+      etag: string
+      id: string
+      /**
+       * 再生リストの基本情報。
+       */
+      snippet: PlaylistsResponseSnippet
+      /**
+       * 再生リストのステータス情報。
+       * 例: `snippet.type`が`videoRated`である場合、当情報は評価された動画情報を指す。
+       */
+      status: PlaylistsResponseStatus
+      /**
+       * 再生リストのコンテンツ情報(動画数など)。
+       */
+      contentDetails: PlaylistsResponseContentDetails
+      /**
+       * 再生リストの動画プレイヤー情報(埋め込みタグ情報など)。
+       */
+      player: PlaylistsResponsePlayer
+    }[]
+  }
 
 export type PlaylistsResponseSnippet = {
   /**
@@ -55,31 +56,31 @@ export type PlaylistsResponseSnippet = {
    * - `subscription`: チャンネル登録した
    * - `upload`: 動画アップロード
    */
-  type: string;
+  type: string
   /**
    * 再生リスト発行元のチャンネルID。
    */
-  channelId: string;
+  channelId: string
   /**
    * 再生リスト発行元のチャンネルのタイトル。
    */
-  channelTitle: string;
+  channelTitle: string
   /**
    * 再生リストのタイトル。
    */
-  title: string;
+  title: string
   /**
    * 再生リストの説明。
    */
-  description: string;
+  description: string
   /**
    * 再生リストのサムネイル。
    */
-  thumbnails: BaseThumbnail;
+  thumbnails: BaseThumbnail
   /**
    * 再生リストのタグ。
    */
-  tags: string[];
+  tags: string[]
 }
 
 export type PlaylistsResponseStatus = {
@@ -89,19 +90,19 @@ export type PlaylistsResponseStatus = {
    * - `public`: 公開
    * - `unlisted`: 限定公開(多分)
    */
-  privacyStatus: string;
+  privacyStatus: string
 }
 
 export type PlaylistsResponseContentDetails = {
   /**
    * 再生リスト内部に入っている動画数。
    */
-  itemCount: number;
+  itemCount: number
 }
 
 export type PlaylistsResponsePlayer = {
   /**
    * 動画再生プレイヤーとなる`<iframe>`タグ。
    */
-  embedHtml: string;
+  embedHtml: string
 }
