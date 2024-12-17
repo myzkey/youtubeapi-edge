@@ -1,6 +1,7 @@
 import { BASE_YOUTUBE_API_V3_URL } from "~/helpers/const";
 import { ChannelsRequest } from "./ChannelRequest";
 import { ChannelsResponse } from "./ChannelsResponse";
+import { appendParamsToUrl } from "~/utils/url";
 
 export class ChannelApiClient {
   private apiKey: string
@@ -15,15 +16,13 @@ export class ChannelApiClient {
   }
 
   async find(params: Omit<ChannelsRequest, 'key'>): Promise<ChannelsResponse> {
-    const url = new URL(`${BASE_YOUTUBE_API_V3_URL}/channels`);
-    Object.entries(params).forEach(([key, value]) => url.searchParams.append(key, String(value)));
-    url.searchParams.append('key', this.apiKey);
-
+    const url = appendParamsToUrl(`${BASE_YOUTUBE_API_V3_URL}/channels`, params, this.apiKey);
     const response = await this.client(url.toString());
+
     if (!response.ok) {
-      const errorBody = await response.json();
-      throw new Error(`YouTube API error: ${response.status} - ${response.statusText} - ${errorBody.error?.message}`);
+      throw new Error(`YouTube API error: ${response.status} - ${response.statusText}`);
     }
+
     return response.json() as Promise<ChannelsResponse>;
   }
 }

@@ -1,6 +1,7 @@
 import { BASE_YOUTUBE_API_V3_URL } from "~/helpers/const";
 import { PlaylistsRequest } from "./PlaylistsRequest";
 import { PlaylistsResponse } from "./PlaylistsResponse";
+import { appendParamsToUrl } from "~/utils/url";
 
 export class PlaylistApiClient {
   private apiKey: string
@@ -15,15 +16,13 @@ export class PlaylistApiClient {
   }
 
   async find(params: PlaylistsRequest): Promise<PlaylistsResponse> {
-    const url = new URL(`${BASE_YOUTUBE_API_V3_URL}/channels`);
-    Object.entries(params).forEach(([key, value]) => url.searchParams.append(key, String(value)));
-    url.searchParams.append('key', this.apiKey);
-
+    const url = appendParamsToUrl(`${BASE_YOUTUBE_API_V3_URL}/playlists`, params, this.apiKey);
     const response = await this.client(url.toString());
+
     if (!response.ok) {
-      const errorBody = await response.json();
-      throw new Error(`YouTube API error: ${response.status} - ${response.statusText} - ${errorBody.error?.message}`);
+      throw new Error(`YouTube API error: ${response.status} - ${response.statusText}`);
     }
+
     return response.json() as Promise<PlaylistsResponse>;
   }
 }

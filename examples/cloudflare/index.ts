@@ -1,8 +1,8 @@
-import youtubeapi from 'youtubeapi-edge'
+import { youtubeapiEdge } from 'youtubeapi-edge'
 
 export default {
   async fetch(_request: Request, context: { YOUTUBE_API_KEY: string }): Promise<Response> {
-    const youtube = youtubeapi({
+    const youtube = youtubeapiEdge({
       version: 'v3',
       auth: context.YOUTUBE_API_KEY
     })

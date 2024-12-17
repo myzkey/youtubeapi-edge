@@ -1,6 +1,7 @@
 import { BASE_YOUTUBE_API_V3_URL } from "~/helpers/const";
 import { SearchRequest } from "./SearchRequest";
 import { SearchResponse } from "./SearchResponse";
+import { appendParamsToUrl } from "~/utils/url";
 
 export class SearchApiClient {
   private apiKey: string
@@ -15,14 +16,12 @@ export class SearchApiClient {
   }
 
   async find(params: SearchRequest): Promise<SearchResponse> {
-    const url = new URL(`${BASE_YOUTUBE_API_V3_URL}/search`);
-    Object.entries(params).forEach(([key, value]) => url.searchParams.append(key, String(value)));
-    url.searchParams.append('key', this.apiKey);
-
+    const url = appendParamsToUrl(`${BASE_YOUTUBE_API_V3_URL}/search`, params, this.apiKey);
     const response = await this.client(url.toString());
+
     if (!response.ok) {
       throw new Error(`YouTube API error: ${response.status} - ${response.statusText}`);
     }
-    return response.json();
+    return response.json() as Promise<SearchResponse>;
   }
 }
