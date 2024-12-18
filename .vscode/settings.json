@@ -4,7 +4,7 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "always"
   },
-  "editor.defaultFormatter": "dbaeumer.vscode-eslint", // ESLint をフォーマッターとして使用
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
   "files.trimTrailingWhitespace": true,

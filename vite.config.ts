@@ -1,6 +1,6 @@
 /// <reference types="vitest" />
-import { defineConfig } from 'vite';
-import path from 'path';
+import { defineConfig } from 'vite'
+import path from 'path'
 
 export default defineConfig({
   resolve: {
@@ -10,6 +10,15 @@ export default defineConfig({
   },
   test: {
     globals: true,
-    environment: 'happy-dom'
+    environment: 'happy-dom',
+    coverage: {
+      exclude: [
+        'examples/**',
+        'src/**/types/**',
+        'dist/**',
+        'eslint.config.mjs',
+        'vite.config.ts',
+      ],
+    },
   },
-});
+})

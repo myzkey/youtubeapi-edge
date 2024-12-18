@@ -1,6 +1,6 @@
 import { BASE_YOUTUBE_API_V3_URL } from '~/helpers/const'
-import { VideosRequest } from './VideosRequest'
-import { VideosResponse } from './VideosResponse'
+import { VideosRequest } from './types/VideosRequest'
+import { VideosResponse } from './types/VideosResponse'
 import { appendParamsToUrl } from '~/utils/url'
 
 export class VideoApiClient {

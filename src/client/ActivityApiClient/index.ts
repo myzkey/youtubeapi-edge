@@ -1,7 +1,7 @@
 import { BASE_YOUTUBE_API_V3_URL } from '~/helpers/const'
 import { appendParamsToUrl } from '~/utils/url'
-import { ActivitiesRequest } from './ActivitiesRequest'
-import { ActivitiesResponse } from './ActivitiesResponse'
+import { ActivitiesRequest } from './types/ActivitiesRequest'
+import { ActivitiesResponse } from './types/ActivitiesResponse'
 
 export class ActivityApiClient {
   private apiKey: string
@@ -15,7 +15,9 @@ export class ActivityApiClient {
     this.client = client.bind(globalThis)
   }
 
-  async find(params: ActivitiesRequest): Promise<ActivitiesResponse> {
+  async find(
+    params: Omit<ActivitiesRequest, 'key'>,
+  ): Promise<ActivitiesResponse> {
     const url = appendParamsToUrl(
       `${BASE_YOUTUBE_API_V3_URL}/activities`,
       params,

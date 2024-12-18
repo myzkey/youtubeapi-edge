@@ -11,14 +11,17 @@ export default [
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   {
+    ignores: ['node_modules', 'dist', 'coverage'],
+  },
+  {
     plugins: {
-      prettier: prettierPlugin, // Prettierプラグインをオブジェクトとして定義
+      prettier: prettierPlugin,
     },
     rules: {
-      ...prettierConfig.rules, // Prettierの設定をESLintのルールとして適用
-      'prettier/prettier': ['error'], // PrettierルールをESLintに適用
-      semi: ['error', 'never'], // セミコロン禁止
-      quotes: ['error', 'single'], // シングルクォーテーションを強制
+      ...prettierConfig.rules,
+      'prettier/prettier': ['error'],
+      semi: ['error', 'never'],
+      quotes: ['error', 'single'],
     },
   },
 ]

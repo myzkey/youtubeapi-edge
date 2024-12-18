@@ -1,6 +1,6 @@
 import { BASE_YOUTUBE_API_V3_URL } from '~/helpers/const'
-import { PlaylistsRequest } from './PlaylistsRequest'
-import { PlaylistsResponse } from './PlaylistsResponse'
+import { PlaylistsRequest } from './types/PlaylistsRequest'
+import { PlaylistsResponse } from './types/PlaylistsResponse'
 import { appendParamsToUrl } from '~/utils/url'
 
 export class PlaylistApiClient {
@@ -15,7 +15,9 @@ export class PlaylistApiClient {
     this.client = client.bind(globalThis)
   }
 
-  async find(params: PlaylistsRequest): Promise<PlaylistsResponse> {
+  async find(
+    params: Omit<PlaylistsRequest, 'key'>,
+  ): Promise<PlaylistsResponse> {
     const url = appendParamsToUrl(
       `${BASE_YOUTUBE_API_V3_URL}/playlists`,
       params,

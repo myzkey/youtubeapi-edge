@@ -1,7 +1,7 @@
 import { BASE_YOUTUBE_API_V3_URL } from '~/helpers/const'
 import { appendParamsToUrl } from '~/utils/url'
-import { ChannelsRequest } from './ChannelRequest'
-import { ChannelsResponse } from './ChannelsResponse'
+import { ChannelsRequest } from './types/ChannelRequest'
+import { ChannelsResponse } from './types/ChannelsResponse'
 
 export class ChannelApiClient {
   private apiKey: string

@@ -1,12 +1,12 @@
 import { ChannelApiClient } from './client/ChannelApiClient'
-import { ChannelsRequest } from './client/ChannelApiClient/ChannelRequest'
-import { ChannelsResponse } from './client/ChannelApiClient/ChannelsResponse'
+import { ChannelsRequest } from './client/ChannelApiClient/types/ChannelRequest'
+import { ChannelsResponse } from './client/ChannelApiClient/types/ChannelsResponse'
 import { SearchApiClient } from './client/SearchApiClient'
-import { SearchRequest } from './client/SearchApiClient/SearchRequest'
-import { SearchResponse } from './client/SearchApiClient/SearchResponse'
+import { SearchRequest } from './client/SearchApiClient/types/SearchRequest'
+import { SearchResponse } from './client/SearchApiClient/types/SearchResponse'
 import { VideoApiClient } from './client/VideoApiClient'
-import { VideosRequest } from './client/VideoApiClient/VideosRequest'
-import { VideosResponse } from './client/VideoApiClient/VideosResponse'
+import { VideosRequest } from './client/VideoApiClient/types/VideosRequest'
+import { VideosResponse } from './client/VideoApiClient/types/VideosResponse'
 
 export const youtubeapiEdge = (params: { version: 'v3'; auth: string }) => {
   return {
