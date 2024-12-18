@@ -1,20 +1,21 @@
 {
   "name": "youtubeapi-edge",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "type": "module",
   "publishConfig": {
     "access": "public"
   },
   "description": "A YouTube API client for Edge environments",
-  "main": "dist/src/index.js",
-  "module": "dist/src/index.mjs",
-  "types": "dist/src/index.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "tsc && tsc-alias",
-    "prepare": "npm run build",
+    "clean": "rm -rf dist",
+    "build": "pnpm clean && tsc --project tsconfig.build.json && tsc-alias",
+    "prepare": "pnpm run build",
     "test": "vitest",
     "test:watch": "vitest --watch",
     "test:ui": "vitest --ui",
