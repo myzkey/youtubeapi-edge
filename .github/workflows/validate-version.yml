@@ -1,0 +1,34 @@
+name: Validate Version
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, reopened, synchronize]
+
+jobs:
+  version-check:
+    if: startsWith(github.event.pull_request.head.ref, 'release/v')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install jq
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq
+
+      - name: Check version
+        run: |
+          BRANCH_VERSION="${GITHUB_HEAD_REF#release/v}"
+
+          FILE_VERSION=$(jq -r '.version' package.json)
+
+          echo "Branch version:  $BRANCH_VERSION"
+          echo "package.json version: $FILE_VERSION"
+
+          if [ "$BRANCH_VERSION" != "$FILE_VERSION" ]; then
+            echo "Error: Branch version and package.json version do not match."
+            exit 1
+          fi
+          echo "Success: Versions match!"
