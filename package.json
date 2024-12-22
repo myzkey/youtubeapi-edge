@@ -1,9 +1,13 @@
 {
   "name": "youtubeapi-edge",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "type": "module",
   "publishConfig": {
     "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/myzkey/youtubeapi-edge"
   },
   "description": "A YouTube API client for Edge environments",
   "main": "dist/index.js",
