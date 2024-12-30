@@ -7,7 +7,7 @@
  * - 認証ユーザーのHOMEページのアクティビティのみにする(`home`=`true`)
  * - 認証ユーザーが所有するチャンネルのみにする(`mine`=`true`)
  */
-export type ActivitiesRequest = {
+export type InputActivitiesRequest = {
   /**
    * 情報取得対象箇所。
    * 以下の項目を指定可能。

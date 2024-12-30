@@ -15,9 +15,7 @@ export class ActivityApiClient {
     this.client = client.bind(globalThis)
   }
 
-  async find(
-    params: Omit<ActivitiesRequest, 'key'>,
-  ): Promise<ActivitiesResponse> {
+  async find(params: ActivitiesRequest): Promise<ActivitiesResponse> {
     const url = appendParamsToUrl(
       `${BASE_YOUTUBE_API_V3_URL}/activities`,
       params,
