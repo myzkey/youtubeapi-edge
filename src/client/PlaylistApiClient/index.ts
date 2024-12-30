@@ -15,9 +15,7 @@ export class PlaylistApiClient {
     this.client = client.bind(globalThis)
   }
 
-  async find(
-    params: Omit<PlaylistsRequest, 'key'>,
-  ): Promise<PlaylistsResponse> {
+  async find(params: PlaylistsRequest): Promise<PlaylistsResponse> {
     const url = appendParamsToUrl(
       `${BASE_YOUTUBE_API_V3_URL}/playlists`,
       params,

@@ -1,26 +1,28 @@
-import { ChannelApiClient } from './client/ChannelApiClient'
-import { ChannelsRequest } from './client/ChannelApiClient/types/ChannelRequest'
-import { ChannelsResponse } from './client/ChannelApiClient/types/ChannelsResponse'
-import { SearchApiClient } from './client/SearchApiClient'
-import { SearchRequest } from './client/SearchApiClient/types/SearchRequest'
-import { SearchResponse } from './client/SearchApiClient/types/SearchResponse'
-import { VideoApiClient } from './client/VideoApiClient'
-import { VideosRequest } from './client/VideoApiClient/types/VideosRequest'
-import { VideosResponse } from './client/VideoApiClient/types/VideosResponse'
+import { VideosRequestAdapter } from './adaptors/video'
+import { ChannelApiClient, SearchApiClient, VideoApiClient } from './client'
+import type {
+  ChannelsRequest,
+  ChannelsResponse,
+  SearchRequest,
+  SearchResponse,
+  VideosRequest,
+  VideosResponse,
+} from './client'
 
 export const youtubeapiEdge = (params: { version: 'v3'; auth: string }) => {
   return {
     videos: {
       list: async (requestParams: VideosRequest): Promise<VideosResponse> => {
         const client = new VideoApiClient(params.auth)
-        const result = await client.find(requestParams)
+        const request = new VideosRequestAdapter(requestParams)
+        const result = await client.find(request.toParams())
         return result
       },
     },
     search: {
       list: async (requestParams: SearchRequest): Promise<SearchResponse> => {
-        const repo = new SearchApiClient(params.auth)
-        const result = await repo.find(requestParams)
+        const client = new SearchApiClient(params.auth)
+        const result = await client.find(requestParams)
         return result
       },
     },
