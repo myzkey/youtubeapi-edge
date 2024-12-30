@@ -15,7 +15,7 @@ export class ChannelApiClient {
     this.client = client.bind(globalThis)
   }
 
-  async find(params: Omit<ChannelsRequest, 'key'>): Promise<ChannelsResponse> {
+  async find(params: ChannelsRequest): Promise<ChannelsResponse> {
     const url = appendParamsToUrl(
       `${BASE_YOUTUBE_API_V3_URL}/channels`,
       params,
