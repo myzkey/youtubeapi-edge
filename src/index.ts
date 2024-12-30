@@ -1,4 +1,4 @@
-import { VideosRequestAdapter } from './adaptors/video'
+import { VideosRequestAdapter } from './adaptors/VideosRequestAdapter'
 import { ChannelApiClient, SearchApiClient, VideoApiClient } from './client'
 import type {
   ChannelsRequest,
