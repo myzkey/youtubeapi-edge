@@ -48,12 +48,17 @@ describe('PlaylistApiClient', () => {
       ok: false,
       status: 400,
       statusText: 'Bad Request',
+      json: async () => ({
+        error: {
+          message: 'ErrorMessage',
+        },
+      }),
     })
 
     const client = new PlaylistApiClient(mockApiKey, mockFetch)
 
     await expect(client.find(baseParams)).rejects.toThrowError(
-      'YouTube API error: 400 - Bad Request',
+      'YouTube API error: 400 - Bad Request - ErrorMessage',
     )
 
     const expectedUrl = `${BASE_YOUTUBE_API_V3_URL}/playlists?part=snippet&channelId=test-channel&key=${mockApiKey}`

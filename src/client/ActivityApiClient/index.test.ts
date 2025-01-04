@@ -48,12 +48,17 @@ describe('ActivityApiClient', () => {
       ok: false,
       status: 400,
       statusText: 'Bad Request',
+      json: async () => ({
+        error: {
+          message: 'ErrorMessage',
+        },
+      }),
     })
 
     const client = new ActivityApiClient(mockApiKey, mockFetch)
 
     await expect(client.find(baseParams)).rejects.toThrowError(
-      'YouTube API error: 400 - Bad Request',
+      'YouTube API error: 400 - Bad Request - ErrorMessage',
     )
 
     const expectedUrl = `${BASE_YOUTUBE_API_V3_URL}/activities?part=snippet&channelId=test-channel&key=${mockApiKey}`
