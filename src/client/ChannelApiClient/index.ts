@@ -24,8 +24,11 @@ export class ChannelApiClient {
     const response = await this.client(url.toString())
 
     if (!response.ok) {
+      const errorBody = await response.json().catch(() => ({}))
+      const errorMessage = errorBody?.error?.message || 'Unknown error occurred'
+
       throw new Error(
-        `YouTube API error: ${response.status} - ${response.statusText}`,
+        `YouTube API error: ${response.status} - ${response.statusText} - ${errorMessage}`,
       )
     }
 

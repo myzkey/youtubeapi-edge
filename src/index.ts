@@ -1,3 +1,4 @@
+import { ChannelsRequestAdapter } from './adaptors/ChannelsRequestAdapter'
 import { VideosRequestAdapter } from './adaptors/VideosRequestAdapter'
 import { ChannelApiClient, SearchApiClient, VideoApiClient } from './client'
 import type {
@@ -31,7 +32,8 @@ export const youtubeapiEdge = (params: { version: 'v3'; auth: string }) => {
         requestParams: ChannelsRequest,
       ): Promise<ChannelsResponse> => {
         const client = new ChannelApiClient(params.auth)
-        const result = await client.find(requestParams)
+        const request = new ChannelsRequestAdapter(requestParams)
+        const result = await client.find(request.toParams())
         return result
       },
     },

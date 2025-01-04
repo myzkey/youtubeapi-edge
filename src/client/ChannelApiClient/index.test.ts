@@ -46,14 +46,19 @@ describe('ChannelApiClient', () => {
   it('should throw an error if the response is not ok', async () => {
     const mockFetch = vi.fn().mockResolvedValue({
       ok: false,
-      status: 404,
-      statusText: 'Not Found',
+      status: 400,
+      statusText: 'Bad Request',
+      json: async () => ({
+        error: {
+          message: 'ErrorMessage',
+        },
+      }),
     })
 
     const client = new ChannelApiClient(mockApiKey, mockFetch)
 
     await expect(client.find(baseParams)).rejects.toThrowError(
-      'YouTube API error: 404 - Not Found',
+      'YouTube API error: 400 - Bad Request - ErrorMessage',
     )
 
     expect(mockFetch).toHaveBeenCalledWith(

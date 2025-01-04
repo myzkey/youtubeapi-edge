@@ -43,14 +43,19 @@ describe('VideoApiClient', () => {
   it('should throw an error if the response is not ok', async () => {
     const mockFetch = vi.fn().mockResolvedValue({
       ok: false,
-      status: 403,
-      statusText: 'Forbidden',
+      status: 400,
+      statusText: 'Bad Request',
+      json: async () => ({
+        error: {
+          message: 'ErrorMessage',
+        },
+      }),
     })
 
     const client = new VideoApiClient(mockApiKey, mockFetch)
 
     await expect(client.find(baseParams)).rejects.toThrowError(
-      'YouTube API error: 403 - Forbidden',
+      'YouTube API error: 400 - Bad Request - ErrorMessage',
     )
 
     expect(mockFetch).toHaveBeenCalledWith(

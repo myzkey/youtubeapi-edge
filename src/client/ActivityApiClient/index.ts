@@ -24,8 +24,16 @@ export class ActivityApiClient {
     const response = await this.client(url.toString())
 
     if (!response.ok) {
+      const errorBody = await response.json().catch(() => ({}))
+      const errorMessage = errorBody?.error?.message || 'Unknown error occurred'
+      console.error(
+        'YouTube API error:',
+        response.status,
+        response.statusText,
+        errorMessage,
+      )
       throw new Error(
-        `YouTube API error: ${response.status} - ${response.statusText}`,
+        `YouTube API error: ${response.status} - ${response.statusText} - ${errorMessage}`,
       )
     }
 
