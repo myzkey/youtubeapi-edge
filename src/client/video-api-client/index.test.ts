@@ -1,30 +1,27 @@
 import { describe, it, expect, vi } from 'vitest'
-import { ActivityApiClient } from '.'
+import { VideoApiClient } from '.'
 import { BASE_YOUTUBE_API_V3_URL } from '~/helpers/const'
-import { ActivitiesRequest } from './types/ActivitiesRequest'
-import { ActivitiesResponse } from './types/ActivitiesResponse'
+import { VideosRequest } from './types/videos-request'
+import { VideosResponse } from './types/videos-response'
 
-describe('ActivityApiClient', () => {
+describe('VideoApiClient', () => {
   const mockApiKey = 'mock-api-key'
-  const baseParams: Omit<ActivitiesRequest, 'key'> = {
-    part: 'snippet',
-    channelId: 'test-channel',
-  }
-  const mockResponse: ActivitiesResponse = {
-    etag: 'etag',
-    kind: 'youtube#activityListResponse',
+  const baseParams: VideosRequest = { part: 'snippet', id: 'videoId' }
+  const mockResponse: VideosResponse = {
+    kind: 'youtube#videoListResponse',
     items: [],
     pageInfo: {
       totalResults: 0,
       resultsPerPage: 0,
     },
+    etag: 'etag',
     nextPageToken: '',
     prevPageToken: '',
   }
 
   it('should throw an error if API key is not provided', () => {
-    expect(() => new ActivityApiClient('')).toThrowError(
-      'API key is required to initialize ActivityRepository',
+    expect(() => new VideoApiClient('')).toThrowError(
+      'API key is required to initialize VideoApiClient',
     )
   })
 
@@ -34,12 +31,12 @@ describe('ActivityApiClient', () => {
       json: async () => mockResponse,
     })
 
-    const client = new ActivityApiClient(mockApiKey, mockFetch)
+    const client = new VideoApiClient(mockApiKey, mockFetch)
     const response = await client.find(baseParams)
 
-    const expectedUrl = `${BASE_YOUTUBE_API_V3_URL}/activities?part=snippet&channelId=test-channel&key=${mockApiKey}`
-
-    expect(mockFetch).toHaveBeenCalledWith(expectedUrl)
+    expect(mockFetch).toHaveBeenCalledWith(
+      `${BASE_YOUTUBE_API_V3_URL}/videos?part=snippet&id=videoId&key=mock-api-key`,
+    )
     expect(response).toEqual(mockResponse)
   })
 
@@ -55,13 +52,14 @@ describe('ActivityApiClient', () => {
       }),
     })
 
-    const client = new ActivityApiClient(mockApiKey, mockFetch)
+    const client = new VideoApiClient(mockApiKey, mockFetch)
 
     await expect(client.find(baseParams)).rejects.toThrowError(
       'YouTube API error: 400 - Bad Request - ErrorMessage',
     )
 
-    const expectedUrl = `${BASE_YOUTUBE_API_V3_URL}/activities?part=snippet&channelId=test-channel&key=${mockApiKey}`
-    expect(mockFetch).toHaveBeenCalledWith(expectedUrl)
+    expect(mockFetch).toHaveBeenCalledWith(
+      `${BASE_YOUTUBE_API_V3_URL}/videos?part=snippet&id=videoId&key=mock-api-key`,
+    )
   })
 })

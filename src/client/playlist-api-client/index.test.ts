@@ -1,8 +1,8 @@
 import { describe, it, expect, vi } from 'vitest'
 import { PlaylistApiClient } from '.'
 import { BASE_YOUTUBE_API_V3_URL } from '~/helpers/const'
-import { PlaylistsRequest } from './types/PlaylistsRequest'
-import { PlaylistsResponse } from './types/PlaylistsResponse'
+import { PlaylistsRequest } from './types/playlists-request'
+import { PlaylistsResponse } from './types/playlists-response'
 
 describe('PlaylistApiClient', () => {
   const mockApiKey = 'mock-api-key'

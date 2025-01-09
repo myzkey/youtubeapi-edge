@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest'
 import { ChannelApiClient } from '.'
-import { ChannelsRequest } from './types/ChannelRequest'
-import { ChannelsResponse } from './types/ChannelsResponse'
+import { ChannelsRequest } from './types/channel-request'
+import { ChannelsResponse } from './types/channels-response'
 import { BASE_YOUTUBE_API_V3_URL } from '~/helpers/const'
 
 describe('ChannelApiClient', () => {

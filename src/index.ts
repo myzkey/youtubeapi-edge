@@ -1,5 +1,5 @@
-import { ChannelsRequestAdapter } from './adaptors/ChannelsRequestAdapter'
-import { VideosRequestAdapter } from './adaptors/VideosRequestAdapter'
+import { ChannelsRequestAdapter } from './adaptors/channels-request-adapter'
+import { VideosRequestAdapter } from './adaptors/videos-request-adapter'
 import { ChannelApiClient, SearchApiClient, VideoApiClient } from './client'
 import type {
   ChannelsRequest,

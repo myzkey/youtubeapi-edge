@@ -1,23 +1,23 @@
 import { BASE_YOUTUBE_API_V3_URL } from '~/helpers/const'
+import { PlaylistsRequest } from './types/playlists-request'
+import { PlaylistsResponse } from './types/playlists-response'
 import { appendParamsToUrl } from '~/utils/url'
-import { ChannelsRequest } from './types/ChannelRequest'
-import { ChannelsResponse } from './types/ChannelsResponse'
 
-export class ChannelApiClient {
+export class PlaylistApiClient {
   private apiKey: string
   private client: typeof fetch = fetch
 
   constructor(apiKey: string, client: typeof fetch = fetch) {
     if (!apiKey) {
-      throw new Error('API key is required to initialize ChannelApiClient')
+      throw new Error('API key is required to initialize PlaylistApiClient')
     }
     this.apiKey = apiKey
     this.client = client.bind(globalThis)
   }
 
-  async find(params: ChannelsRequest): Promise<ChannelsResponse> {
+  async find(params: PlaylistsRequest): Promise<PlaylistsResponse> {
     const url = appendParamsToUrl(
-      `${BASE_YOUTUBE_API_V3_URL}/channels`,
+      `${BASE_YOUTUBE_API_V3_URL}/playlists`,
       params,
       this.apiKey,
     )
@@ -32,6 +32,6 @@ export class ChannelApiClient {
       )
     }
 
-    return response.json() as Promise<ChannelsResponse>
+    return response.json() as Promise<PlaylistsResponse>
   }
 }

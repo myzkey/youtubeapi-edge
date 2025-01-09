@@ -1,6 +1,6 @@
 import { BASE_YOUTUBE_API_V3_URL } from '~/helpers/const'
-import { SearchRequest } from './types/SearchRequest'
-import { SearchResponse } from './types/SearchResponse'
+import { SearchRequest } from './types/search-request'
+import { SearchResponse } from './types/search-response'
 import { appendParamsToUrl } from '~/utils/url'
 
 export class SearchApiClient {
