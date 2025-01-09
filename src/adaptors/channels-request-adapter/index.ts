@@ -1,5 +1,5 @@
 import { ChannelsRequest } from '~/client'
-import { InputChannelsRequest } from '~/inputTypes/InputChannelRequest'
+import { InputChannelsRequest } from '~/input-types/input-channel-request'
 
 /**
  * Adapter class for ChannelsRequest

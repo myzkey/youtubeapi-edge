@@ -1,8 +1,8 @@
 import { describe, it, expect, vi } from 'vitest'
 import { youtubeapiEdge } from '.'
-import { VideoApiClient } from '~/client/VideoApiClient'
-import { SearchApiClient } from '~/client/SearchApiClient'
-import { ChannelApiClient } from '~/client/ChannelApiClient'
+import { VideoApiClient } from '~/client/video-api-client'
+import { SearchApiClient } from '~/client/search-api-client'
+import { ChannelApiClient } from '~/client/channel-api-client'
 
 vi.mock('~/client/VideoApiClient', () => {
   return {

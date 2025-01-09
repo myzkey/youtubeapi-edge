@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest'
 import { SearchApiClient } from '.'
-import { SearchRequest } from './types/SearchRequest'
-import { SearchResponse } from './types/SearchResponse'
+import { SearchRequest } from './types/search-request'
+import { SearchResponse } from './types/search-response'
 import { BASE_YOUTUBE_API_V3_URL } from '~/helpers/const'
 
 describe('SearchApiClient', () => {

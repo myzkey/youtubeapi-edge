@@ -1,5 +1,5 @@
 import { VideosRequest } from '~/client'
-import { InputVideosRequest } from '~/inputTypes/InputVideosRequest'
+import { InputVideosRequest } from '~/input-types/input-videos-request'
 
 /**
  * Adapter class for VideosRequest

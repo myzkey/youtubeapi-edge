@@ -2,7 +2,7 @@ import {
   BasePageInfoResponse,
   BaseResponse,
   BaseThumbnail,
-} from '~/client/types/BaseResponse'
+} from '~/client/types/base-response'
 
 /**
  * Youtube Data API > `playlists`のレスポンス
