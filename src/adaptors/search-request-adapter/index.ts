@@ -1,13 +1,13 @@
 import { VideosRequest } from '~/client'
-import { InputVideosRequest } from '~/input-types/input-videos-request'
+import { InputSearchRequest } from '~/input-types/input-search-request'
 
 /**
- * Adapter class for VideosRequest
+ * Adapter class for SearchRequest
  */
-export class VideosRequestAdapter {
-  private params: InputVideosRequest
+export class SearchRequestAdapter {
+  private params: InputSearchRequest
 
-  constructor(params: InputVideosRequest) {
+  constructor(params: InputSearchRequest) {
     this.validate(params)
     this.params = params
   }
@@ -17,7 +17,7 @@ export class VideosRequestAdapter {
    * TODO: Implement this method
    * @param params
    */
-  private validate(params: InputVideosRequest): void {
+  private validate(params: InputSearchRequest): void {
     if (!params.part || params.part.length === 0) {
       throw new Error('part is required and cannot be empty.')
     }

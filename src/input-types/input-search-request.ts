@@ -10,7 +10,7 @@ export type InputSearchRequest = {
    * - `id`
    * - `snippet`: 動画の基本情報
    */
-  part: string | ('id' | 'snippet')[]
+  part: ('id' | 'snippet')[]
   /**
    * 検索クエリ。
    */
