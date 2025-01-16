@@ -11,11 +11,19 @@ export default {
     })
     try {
       const channelList = await youtube.channels.list({
-        part: 'snippet',
+        part: [
+          'id',
+          'snippet',
+          'brandingSettings',
+          'contentDetails',
+          'statistics',
+          'topicDetails',
+          'status',
+        ],
         id: 'UCX6OQ3DkcsbYNE6H8uQQuVA',
       })
       const videoList = await youtube.videos.list({
-        part: 'snippet',
+        part: ['snippet'],
         chart: 'mostPopular',
       })
       const searchList = await youtube.search.list({
