@@ -7,7 +7,16 @@
  * - 再生リストIDを指定する方法(`id`)
  * - 認証ユーザーが所有するチャンネルのみにする(`mine`=`true`)
  */
-export type PlaylistsRequest = {
+
+type PlaylistPart =
+  | 'id'
+  | 'snippet'
+  | 'status'
+  | 'contentDetails'
+  | 'player'
+  | 'localizations'
+
+export type InputPlaylistsRequest = {
   /**
    * 情報取得対象箇所。
    * 以下の項目を指定可能。
@@ -18,7 +27,7 @@ export type PlaylistsRequest = {
    * - `contentDetails`: 再生リストのコンテンツ情報(動画数など)
    * - `player`: 再生リストの動画プレイヤー情報(埋め込みタグ情報など)
    */
-  part: string
+  part: PlaylistPart[]
   /**
    * 取得対象のチャンネルID。
    * チャンネルIDはそのチャンネルのURLを見ればわかる:
