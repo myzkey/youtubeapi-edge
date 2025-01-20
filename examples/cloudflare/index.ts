@@ -27,14 +27,20 @@ export default {
         chart: 'mostPopular',
       })
       const searchList = await youtube.search.list({
-        part: 'snippet',
+        part: ['snippet'],
         q: 'hoge',
       })
+      const playlists = await youtube.playlists.list({
+        channelId: 'UCljYHFazflmGaDr5Lo90KmA',
+        part: ['snippet'],
+      })
+
       return new Response(
         JSON.stringify({
           channelList,
           videoList,
           searchList,
+          playlists,
         }),
         {
           headers: { 'Content-Type': 'application/json' },

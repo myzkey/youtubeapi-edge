@@ -1,10 +1,19 @@
-import { ChannelsRequestAdapter } from './adaptors/channels-request-adapter'
-import { SearchRequestAdapter } from './adaptors/search-request-adapter'
-import { VideosRequestAdapter } from './adaptors/videos-request-adapter'
-import { ChannelApiClient, SearchApiClient, VideoApiClient } from './client'
+import {
+  ChannelsRequestAdapter,
+  SearchRequestAdapter,
+  VideosRequestAdapter,
+  PlaylistsRequestAdapter,
+} from './adaptors'
+import {
+  ChannelApiClient,
+  PlaylistApiClient,
+  SearchApiClient,
+  VideoApiClient,
+} from './client'
 import type {
   ChannelsRequest,
   ChannelsResponse,
+  PlaylistsResponse,
   SearchRequest,
   SearchResponse,
   VideosRequest,
@@ -12,6 +21,7 @@ import type {
 } from './client'
 import {
   InputChannelsRequest,
+  InputPlaylistsRequest,
   InputSearchRequest,
   InputVideosRequest,
 } from './input-types'
@@ -48,10 +58,24 @@ export const youtubeapiEdge = (params: { version: 'v3'; auth: string }) => {
         return result
       },
     },
+    playlists: {
+      list: async (
+        requestParams: InputPlaylistsRequest,
+      ): Promise<PlaylistsResponse> => {
+        const client = new PlaylistApiClient(params.auth)
+        const request = new PlaylistsRequestAdapter(requestParams)
+        const result = await client.find(request.toParams())
+        return result
+      },
+    },
   }
 }
 
 export type {
+  InputChannelsRequest,
+  InputPlaylistsRequest,
+  InputSearchRequest,
+  InputVideosRequest,
   ChannelsRequest,
   ChannelsResponse,
   SearchRequest,

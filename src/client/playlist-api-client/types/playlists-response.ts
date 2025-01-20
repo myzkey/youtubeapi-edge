@@ -37,26 +37,12 @@ export type PlaylistsResponse = BaseResponse &
     }[]
   }
 
-export type PlaylistsResponseSnippet = {
+type PlaylistsResponseSnippet = {
   /**
    * アクティビティ発生日時。
    * ISO 8601(`YYYY-MM-DDThh:mm:ss.sZ`)形式で返却。
    */
   publishedAt: string
-  /**
-   * アクティビティ種別。以下が指定される:
-   * - `bulletin`: お知らせメッセージ
-   * - `channelItem`: チャンネルへリソース追加
-   * - `comment`: 動画orチャンネルへコメントを行った
-   * - `favorite`: 動画をお気に入りにした
-   * - `like`: 高評価を押した
-   * - `playlistItem`: 再生リストに追加した
-   * - `recommendation`: 動画等のリソースをお勧めされた
-   * - `social`: SNSヘ投稿
-   * - `subscription`: チャンネル登録した
-   * - `upload`: 動画アップロード
-   */
-  type: string
   /**
    * 再生リスト発行元のチャンネルID。
    */
@@ -77,30 +63,28 @@ export type PlaylistsResponseSnippet = {
    * 再生リストのサムネイル。
    */
   thumbnails: BaseThumbnail
-  /**
-   * 再生リストのタグ。
-   */
-  tags: string[]
 }
 
-export type PlaylistsResponseStatus = {
+type PlaylistsResponseStatus = {
   /**
    * 再生リストのプライバシーステータス。
    * - `private`: 非公開
    * - `public`: 公開
    * - `unlisted`: 限定公開(多分)
    */
-  privacyStatus: string
+  privacyStatus: 'private' | 'public' | 'unlisted'
+
+  podcastStatus: 'enabled' | 'disabled' | 'unspecified'
 }
 
-export type PlaylistsResponseContentDetails = {
+type PlaylistsResponseContentDetails = {
   /**
    * 再生リスト内部に入っている動画数。
    */
   itemCount: number
 }
 
-export type PlaylistsResponsePlayer = {
+type PlaylistsResponsePlayer = {
   /**
    * 動画再生プレイヤーとなる`<iframe>`タグ。
    */
