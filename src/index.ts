@@ -3,9 +3,11 @@ import {
   SearchRequestAdapter,
   VideosRequestAdapter,
   PlaylistsRequestAdapter,
+  CommentThreadsRequestAdapter,
 } from './adaptors'
 import {
   ChannelApiClient,
+  CommentThreadsApiClient,
   PlaylistApiClient,
   SearchApiClient,
   VideoApiClient,
@@ -18,9 +20,11 @@ import type {
   SearchResponse,
   VideosRequest,
   VideosResponse,
+  CommentThreadsResponse,
 } from './client'
 import {
   InputChannelsRequest,
+  InputCommentThreadsRequest,
   InputPlaylistsRequest,
   InputSearchRequest,
   InputVideosRequest,
@@ -64,6 +68,16 @@ export const youtubeapiEdge = (params: { version: 'v3'; auth: string }) => {
       ): Promise<PlaylistsResponse> => {
         const client = new PlaylistApiClient(params.auth)
         const request = new PlaylistsRequestAdapter(requestParams)
+        const result = await client.find(request.toParams())
+        return result
+      },
+    },
+    commentThreads: {
+      list: async (
+        requestParams: InputCommentThreadsRequest,
+      ): Promise<CommentThreadsResponse> => {
+        const client = new CommentThreadsApiClient(params.auth)
+        const request = new CommentThreadsRequestAdapter(requestParams)
         const result = await client.find(request.toParams())
         return result
       },

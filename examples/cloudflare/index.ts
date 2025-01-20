@@ -34,13 +34,17 @@ export default {
         channelId: 'UCljYHFazflmGaDr5Lo90KmA',
         part: ['snippet'],
       })
-
+      const commentThreads = await youtube.commentThreads.list({
+        videoId: 'Vb0XaKEowaE',
+        part: ['snippet', 'replies'],
+      })
       return new Response(
         JSON.stringify({
           channelList,
           videoList,
           searchList,
           playlists,
+          commentThreads,
         }),
         {
           headers: { 'Content-Type': 'application/json' },
