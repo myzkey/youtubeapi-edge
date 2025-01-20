@@ -20,7 +20,7 @@ export type CommentThreadsResponse = BaseResponse &
        * コンテンツの基本情報。
        */
       snippet: CommentThreadsResponseSnippet
-      replies: {
+      replies?: {
         comments: CommentThreadsResponseComment[]
       }
     }

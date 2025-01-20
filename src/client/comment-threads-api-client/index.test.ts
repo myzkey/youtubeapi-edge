@@ -1,13 +1,13 @@
 import { describe, it, expect, vi } from 'vitest'
-import { SearchApiClient } from '.'
-import { SearchRequest } from './types/comment-threads-request'
-import { SearchResponse } from './types/comment-threads-response'
+import { CommentThreadsApiClient } from '.'
+import { CommentThreadsRequest } from './types/comment-threads-request'
+import { CommentThreadsResponse } from './types/comment-threads-response'
 import { BASE_YOUTUBE_API_V3_URL } from '~/helpers/const'
 
-describe('SearchApiClient', () => {
+describe('CommentThreadsApiClient', () => {
   const mockApiKey = 'mock-api-key'
-  const baseParams: SearchRequest = { part: 'snippet', q: 'test query' }
-  const mockResponse: SearchResponse = {
+  const baseParams: CommentThreadsRequest = { part: 'snippet' }
+  const mockResponse: CommentThreadsResponse = {
     etag: 'etag',
     kind: 'youtube#searchListResponse',
     items: {
@@ -15,30 +15,33 @@ describe('SearchApiClient', () => {
       etag: 'etag',
       id: '',
       snippet: {
-        publishedAt: '2021-01-01T00:00:00Z',
         channelId: 'channelId',
-        title: 'title',
-        description: 'description',
-        thumbnails: {
-          default: {
-            url: 'url',
-            width: 120,
-            height: 90,
-          },
-          medium: {
-            url: 'url',
-            width: 320,
-            height: 180,
-          },
-          high: {
-            url: 'url',
-            width: 480,
-            height: 360,
+        videoId: 'videoId',
+        canReply: true,
+        totalReplyCount: 0,
+        isPublic: true,
+        topLevelComment: {
+          id: 'id',
+          kind: 'kind',
+          etag: 'etag',
+          snippet: {
+            channelId: 'channelId',
+            videoId: 'videoId',
+            textDisplay: 'textDisplay',
+            textOriginal: 'textOriginal',
+            authorDisplayName: 'authorDisplayName',
+            authorProfileImageUrl: 'authorProfileImageUrl',
+            authorChannelUrl: 'authorChannelUrl',
+            authorChannelId: {
+              value: 'value',
+            },
+            canRate: true,
+            viewerRating: 'viewerRating',
+            likeCount: 0,
+            publishedAt: 'publishedAt',
+            updatedAt: 'updatedAt',
           },
         },
-        channelTitle: 'channelTitle',
-        liveBroadcastContent: 'none',
-        publishTime: '2021-01-01T00:00:00Z',
       },
     },
     pageInfo: {
@@ -50,8 +53,8 @@ describe('SearchApiClient', () => {
   }
 
   it('should throw an error if API key is not provided', () => {
-    expect(() => new SearchApiClient('')).toThrowError(
-      'API key is required to initialize SearchRepository',
+    expect(() => new CommentThreadsApiClient('')).toThrowError(
+      'API key is required to initialize CommentThreadsApiClient',
     )
   })
 
@@ -61,11 +64,11 @@ describe('SearchApiClient', () => {
       json: async () => mockResponse,
     })
 
-    const client = new SearchApiClient(mockApiKey, mockFetch)
+    const client = new CommentThreadsApiClient(mockApiKey, mockFetch)
     const response = await client.find(baseParams)
 
     expect(mockFetch).toHaveBeenCalledWith(
-      `${BASE_YOUTUBE_API_V3_URL}/search?part=snippet&q=test+query&key=mock-api-key`,
+      `${BASE_YOUTUBE_API_V3_URL}/commentThreads?part=snippet&key=mock-api-key`,
     )
     expect(response).toEqual(mockResponse)
   })
@@ -81,14 +84,14 @@ describe('SearchApiClient', () => {
         },
       }),
     })
-    const client = new SearchApiClient(mockApiKey, mockFetch)
+    const client = new CommentThreadsApiClient(mockApiKey, mockFetch)
 
     await expect(client.find(baseParams)).rejects.toThrowError(
       'YouTube API error: 400 - Bad Request - ErrorMessage',
     )
 
     expect(mockFetch).toHaveBeenCalledWith(
-      `${BASE_YOUTUBE_API_V3_URL}/search?part=snippet&q=test+query&key=mock-api-key`,
+      `${BASE_YOUTUBE_API_V3_URL}/commentThreads?part=snippet&key=mock-api-key`,
     )
   })
 })
