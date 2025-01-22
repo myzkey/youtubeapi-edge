@@ -1,6 +1,6 @@
 {
   "name": "youtubeapi-edge",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "type": "module",
   "publishConfig": {
     "access": "public"
@@ -29,7 +29,10 @@
   "keywords": [
     "YouTube",
     "API",
-    "Edge"
+    "Edge",
+    "cloudflare",
+    "workers",
+    "serverless"
   ],
   "author": "myzkey",
   "license": "MIT",
