@@ -4,13 +4,17 @@ import {
   VideosRequestAdapter,
   PlaylistsRequestAdapter,
   CommentThreadsRequestAdapter,
+  CommentsRequestAdapter,
+  VideoCategoriesRequestAdapter,
 } from './adaptors'
 import {
   ChannelApiClient,
+  CommentsApiClient,
   CommentThreadsApiClient,
   PlaylistApiClient,
   SearchApiClient,
   VideoApiClient,
+  VideoCategoriesApiClient,
 } from './client'
 import type {
   ChannelsRequest,
@@ -21,12 +25,16 @@ import type {
   VideosRequest,
   VideosResponse,
   CommentThreadsResponse,
+  CommentsResponse,
+  VideoCategoriesResponse,
 } from './client'
 import {
   InputChannelsRequest,
+  InputCommentsRequest,
   InputCommentThreadsRequest,
   InputPlaylistsRequest,
   InputSearchRequest,
+  InputVideoCategoriesRequest,
   InputVideosRequest,
 } from './input-types'
 
@@ -72,12 +80,32 @@ export const youtubeapiEdge = (params: { version: 'v3'; auth: string }) => {
         return result
       },
     },
+    comments: {
+      list: async (
+        requestParams: InputCommentsRequest,
+      ): Promise<CommentsResponse> => {
+        const client = new CommentsApiClient(params.auth)
+        const request = new CommentsRequestAdapter(requestParams)
+        const result = await client.find(request.toParams())
+        return result
+      },
+    },
     commentThreads: {
       list: async (
         requestParams: InputCommentThreadsRequest,
       ): Promise<CommentThreadsResponse> => {
         const client = new CommentThreadsApiClient(params.auth)
         const request = new CommentThreadsRequestAdapter(requestParams)
+        const result = await client.find(request.toParams())
+        return result
+      },
+    },
+    videoCategories: {
+      list: async (
+        requestParams: InputVideoCategoriesRequest,
+      ): Promise<VideoCategoriesResponse> => {
+        const client = new VideoCategoriesApiClient(params.auth)
+        const request = new VideoCategoriesRequestAdapter(requestParams)
         const result = await client.find(request.toParams())
         return result
       },
