@@ -16,7 +16,7 @@ describe('CommentsRequestAdapter', () => {
       maxResults: -1,
     } as InputCommentsRequest
     expect(() => new CommentsRequestAdapter(params)).toThrowError(
-      'maxResults must be between 0 and 50.',
+      'maxResults must be between 1 and 100.',
     )
   })
 

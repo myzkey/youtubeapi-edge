@@ -23,7 +23,7 @@ export type CommentThreadsResponse = BaseResponse &
       replies?: {
         comments: CommentThreadsResponseComment[]
       }
-    }
+    }[]
   }
 
 type CommentThreadsResponseSnippet = {

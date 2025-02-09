@@ -16,7 +16,7 @@ describe('CommentThreadsRequestAdapter', () => {
       maxResults: -1,
     } as InputCommentThreadsRequest
     expect(() => new CommentThreadsRequestAdapter(params)).toThrowError(
-      'maxResults must be between 0 and 50.',
+      'maxResults must be between 1 and 100.',
     )
   })
 
