@@ -22,9 +22,9 @@ export class ChannelsRequestAdapter {
     }
     if (
       params.maxResults &&
-      (params.maxResults < 0 || params.maxResults > 50)
+      (params.maxResults < 0 || params.maxResults > 51)
     ) {
-      throw new Error('maxResults must be between 0 and 50.')
+      throw new Error('maxResults must be between 1 and 50.')
     }
     if (params.categoryId) {
       console.info('categoryId is deprecated.')

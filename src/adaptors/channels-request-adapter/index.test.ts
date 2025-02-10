@@ -13,7 +13,7 @@ describe('ChannelsRequestAdapter', () => {
   it('should throw an error if maxResults is out of the valid range', () => {
     const params = { part: ['snippet'], maxResults: -1 } as InputChannelsRequest
     expect(() => new ChannelsRequestAdapter(params)).toThrowError(
-      'maxResults must be between 0 and 50.',
+      'maxResults must be between 1 and 50.',
     )
   })
 

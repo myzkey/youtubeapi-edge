@@ -25,8 +25,8 @@ export default {
 
         case '/videos':
           response = await youtube.videos.list({
-            part: ['snippet'],
-            chart: 'mostPopular',
+            id: query.get('id') || '',
+            part: ['snippet', 'liveStreamingDetails'],
           })
           break
 
@@ -46,14 +46,14 @@ export default {
 
         case '/commentThreads':
           response = await youtube.commentThreads.list({
-            videoId: query.get('videoId') || 'Vb0XaKEowaE',
+            videoId: query.get('videoId') || '',
             part: ['snippet', 'replies'],
           })
           break
 
         case '/comments':
           response = await youtube.comments.list({
-            parentId: query.get('parentId') || 'UgzVeH0kiBO1tMxWsw14AaABAg',
+            parentId: query.get('parentId') || '',
             part: ['snippet'],
           })
           break

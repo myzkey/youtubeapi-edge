@@ -23,9 +23,9 @@ export class CommentThreadsRequestAdapter {
     }
     if (
       params.maxResults &&
-      (params.maxResults < 0 || params.maxResults > 50)
+      (params.maxResults < 0 || params.maxResults > 100)
     ) {
-      throw new Error('maxResults must be between 0 and 50.')
+      throw new Error('maxResults must be between 1 and 100.')
     }
   }
 
